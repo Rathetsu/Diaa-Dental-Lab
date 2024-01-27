@@ -2,19 +2,19 @@ import { AuthBindings } from "@refinedev/core";
 export const TOKEN_KEY = "aldiaa-auth";
 
 export const authProvider: AuthBindings = {
-    login: async ({ username, email, password }) => {
+    login: async ({ email, password }) => {
         try {
-            const response = await fetch("/api/login", {
+            const response = await fetch("http://localhost:3000/auth/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ username, email, password }),
+                body: JSON.stringify({ email, password }),
             });
 
             const data = await response.json();
 
-            if (data.success) {
+            if (response.ok && data.token) {
                 localStorage.setItem(TOKEN_KEY, data.token);
                 return {
                     success: true,

@@ -1,5 +1,6 @@
 import { Controller, Post, Body, UnauthorizedException } from '@nestjs/common';
 import { AuthService } from './auth.service';
+import * as jwt from 'jsonwebtoken';
 
 @Controller('auth')
 export class AuthController {
@@ -7,11 +8,16 @@ export class AuthController {
 
   @Post('login')
   async login(@Body() body: any) {
-    const { username, password } = body;
-    const user = await this.authService.validateUser(username, password);
+    const { email, password } = body;
+    const user = await this.authService.validateUser(email, password);
     if (!user) {
       throw new UnauthorizedException('Invalid credentials');
     }
-    return { success: true, token: '...' };
+
+    const payload = { username: user.username, sub: user.id };
+    const secret = process.env.JWT_SECRET;
+    const token = jwt.sign(payload, secret, { expiresIn: '1h' });
+
+    return { success: true, token: token };
   }
 }
