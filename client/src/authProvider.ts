@@ -81,7 +81,7 @@ export const authProvider: AuthBindings = {
                 const userData = await response.json();
                 return {
                     id: userData.id,
-                    name: `${userData.firstName} ${userData.lastName}`,
+                    name: `${userData.first_name} ${userData.last_name}`,
                     avatar: userData.avatar,
                 };
             } catch (error) {

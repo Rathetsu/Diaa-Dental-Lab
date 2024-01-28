@@ -19,4 +19,13 @@ export class User {
     default: () => 'CURRENT_TIMESTAMP',
   })
   created_at: Date;
+
+  @Column({ length: 255 })
+  avatar: string;
+
+  @Column({ length: 255 })
+  first_name: string;
+
+  @Column({ length: 255 })
+  last_name: string;
 }
