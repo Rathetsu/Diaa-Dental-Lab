@@ -8,7 +8,7 @@ export const Login = () => {
             title={
                 <ThemedTitleV2
                     collapsed={true}
-                    icon={<AppIcon />}
+                    icon={<AppIcon width={"300px"} height={"90px"} />}
                     wrapperStyles={{
                         display: "flex",
                         alignSelf: "center",

@@ -21,7 +21,7 @@ const { useToken } = theme;
 
 type IUser = {
     id: number;
-	name: string;
+    name: string;
     avatar: string;
 };
 

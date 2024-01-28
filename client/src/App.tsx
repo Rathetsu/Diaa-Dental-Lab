@@ -74,8 +74,37 @@ function App() {
                                                 Title={({ collapsed }) => (
                                                     <ThemedTitleV2
                                                         collapsed={collapsed}
-                                                        text="Al Diaa Dental Lab"
-                                                        icon={<AppIcon />}
+                                                        text=""
+                                                        icon={
+                                                            collapsed ? (
+                                                                <img
+                                                                    src="/diaa-favicon.png"
+                                                                    alt="Al-Diaa"
+                                                                    style={{
+                                                                        width: "48px",
+                                                                        height: "48px",
+																		marginLeft: "125px",
+                                                                    }}
+                                                                />
+                                                            ) : (
+                                                                <AppIcon
+                                                                    width={
+                                                                        "180px"
+                                                                    }
+                                                                    height={
+                                                                        "55px"
+                                                                    }
+                                                                />
+                                                            )
+                                                        }
+                                                        wrapperStyles={{
+                                                            display: "flex",
+                                                            alignSelf: "center",
+                                                            marginBottom:
+                                                                "30px",
+                                                            marginRight:
+                                                                "280px",
+                                                        }}
                                                     />
                                                 )}
                                             >
