@@ -27,7 +27,7 @@ import { Login } from "./pages/login";
 function App() {
     const { t, i18n } = useTranslation();
 
-    const API_URL = "https://api.nestjsx-crud.refine.dev";
+    const API_URL = "http://localhost:3000/api";
     const dataProvider = nestjsxCrudDataProvider(API_URL);
 
     const i18nProvider = {

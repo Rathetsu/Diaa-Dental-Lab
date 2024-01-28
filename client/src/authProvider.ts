@@ -1,4 +1,6 @@
 import { AuthBindings } from "@refinedev/core";
+import { jwtDecode } from "jwt-decode";
+
 export const TOKEN_KEY = "aldiaa-auth";
 
 export const authProvider: AuthBindings = {
@@ -65,11 +67,27 @@ export const authProvider: AuthBindings = {
     getIdentity: async () => {
         const token = localStorage.getItem(TOKEN_KEY);
         if (token) {
-            return {
-                id: 1,
-                name: "John Doe",
-                avatar: "https://i.pravatar.cc/300",
-            };
+            const decodedToken = jwtDecode(token);
+            const userId = decodedToken.sub;
+            try {
+                const response = await fetch(
+                    `http://localhost:3000/users/${userId}`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        },
+                    }
+                );
+                const userData = await response.json();
+                return {
+                    id: userData.id,
+                    name: `${userData.firstName} ${userData.lastName}`,
+                    avatar: userData.avatar,
+                };
+            } catch (error) {
+                console.error("Failed to fetch user data", error);
+                return null;
+            }
         }
         return null;
     },
