@@ -83,7 +83,8 @@ function App() {
                                                                     style={{
                                                                         width: "48px",
                                                                         height: "48px",
-																		marginLeft: "125px",
+                                                                        marginLeft:
+                                                                            "125px",
                                                                     }}
                                                                 />
                                                             ) : (
@@ -113,12 +114,6 @@ function App() {
                                         </Authenticated>
                                     }
                                 >
-                                    <Route
-                                        index
-                                        element={
-                                            <NavigateToResource resource="blog_posts" />
-                                        }
-                                    />
                                     <Route
                                         path="*"
                                         element={<ErrorComponent />}

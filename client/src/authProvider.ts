@@ -6,6 +6,7 @@ export const TOKEN_KEY = "aldiaa-auth";
 export const authProvider: AuthBindings = {
     login: async ({ email, password }) => {
         try {
+			email = email.toLowerCase();
             const response = await fetch("http://localhost:3000/auth/login", {
                 method: "POST",
                 headers: {
